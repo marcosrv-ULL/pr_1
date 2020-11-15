@@ -42,7 +42,28 @@ void maze_to_file(Maze& m1) {
     std::ofstream file("../resources/resultados.txt");
     for (int i = 0; i < m1.get_r(); i++) {
         for (int j = 0; j < m1.get_c(); j++) {
-            file << m1(i, j);
+            switch (m1(i, j).getType()) {
+                case PASSAGE:
+                    file << "·";
+                    break;
+                case WALL:
+                    file << "█" ;
+                    break;
+                case VISITED:
+                    file << "*";
+                    break;
+                case EXIT:
+                    file << "X";
+                    break;
+                case START:
+                    file << ">";
+                    break;
+                case RUTA:
+                    file << "#";
+                    break;
+                default:
+                    file << "?";
+            }
         }
         file << endl;
     }
